@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
 
-    private bool isGameOver = false;
+    private bool isGameOver { get; set; } = false;
 
     [Header("UI Settings")]
     [SerializeField] private GameObject pauseMenu;
@@ -102,6 +103,9 @@ public class GameManager : MonoBehaviour
         gameOverPanel.SetActive(true);
         Time.timeScale = 0f;
     }
+    #region Events 
+    public UnityEvent<bool> gameOver = new UnityEvent<bool>();
+    #endregion
 
     private void MoveScene()
     {
